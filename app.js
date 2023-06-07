@@ -1,10 +1,10 @@
-import { OpenAI } from "langchain/llms/openai";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { HNSWLib } from "langchain/vectorstores/hnswlib";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { loadQAStuffChain } from "langchain/chains";
-import { config } from "dotenv";
-import fs from "fs";
+import { OpenAI } from 'langchain/llms/openai';
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
+import { HNSWLib } from 'langchain/vectorstores/hnswlib';
+import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+import { loadQAStuffChain } from 'langchain/chains';
+import { config } from 'dotenv';
+import fs from 'fs';
 config();
 
 const model = new OpenAI();
@@ -19,7 +19,10 @@ const splitter = new RecursiveCharacterTextSplitter({
 const main = async () => {
   try {
     const docs = await splitter.createDocuments([sample]);
-    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+    const vectorStore = await HNSWLib.fromDocuments(
+      docs,
+      new OpenAIEmbeddings()
+    );
     const result = await vectorStore.similaritySearch(query, 5);
     const chain = new loadQAStuffChain(model);
     const res = await chain.call({
