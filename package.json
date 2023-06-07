@@ -1,7 +1,7 @@
 {
-  "name": "openai-poc",
+  "name": "openai-langchain-poc",
   "version": "1.0.0",
-  "description": "Simple poc to test OpenAI's API ",
+  "description": "Simple LangChain poc to test OpenAI's API ",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -12,6 +12,8 @@
   "type": "module",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "hnswlib-node": "^1.4.2",
+    "langchain": "^0.0.76",
     "openai": "^3.2.1"
   }
 }
